@@ -6,7 +6,7 @@ USER root
 
 # Copy pre-downloaded Java and Maven tar.gz files to the Docker image
 # Assuming you have the tar.gz files in the same directory as your Dockerfile
-COPY zulu11.74.15-ca-jdk11.0.24-linux_aarch64.tar.gz /tmp/
+COPY zulu11.74.15-ca-jdk11.0.24-linux_x64.tar.gz /tmp/
 COPY apache-maven-3.9.9-bin.tar.gz /tmp/
 
 # Install necessary utilities
@@ -16,12 +16,12 @@ RUN apt-get update && \
 
 # Install Java from the tar.gz file
 RUN mkdir -p /usr/lib/jvm && \
-    tar -xzf /tmp/zulu11.74.15-ca-jdk11.0.24-linux_aarch64.tar.gz -C /usr/lib/jvm && \
-    ln -s /usr/lib/jvm/jdk-11.0.24 /usr/lib/jvm/zulu11.74.15-ca-jdk11.0.24-linux_aarch64 && \
-    rm /tmp/zulu11.74.15-ca-jdk11.0.24-linux_aarch64.tar.gz
+    tar -xzf /tmp/zulu11.74.15-ca-jdk11.0.24-linux_x64.tar.gz -C /usr/lib/jvm && \
+    ln -s /usr/lib/jvm/jdk-11.0.24 /usr/lib/jvm/zulu11.74.15-ca-jdk11.0.24-linux_x64 && \
+    rm /tmp/zulu11.74.15-ca-jdk11.0.24-linux_x64.tar.gz
 
 # Set environment variables for Java
-ENV JAVA_HOME=/usr/lib/jvm/zulu11.74.15-ca-jdk11.0.24-linux_aarch64
+ENV JAVA_HOME=/usr/lib/jvm/zulu11.74.15-ca-jdk11.0.24-linux_x64
 ENV PATH="$JAVA_HOME/bin:$PATH"
 
 # Install Maven from the tar.gz file
